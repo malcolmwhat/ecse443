@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{calc}
+\newsavebox\CBox
+\newcommand\hcancel[2][0.5pt]{%
+  \ifmmode\sbox\CBox{$#2$}\else\sbox\CBox{#2}\fi%
+  \makebox[0pt][l]{\usebox\CBox}%  
+  \rule[0.5\ht\CBox-#1/2]{\wd\CBox}{#1}}
+
+\begin{document}
+\section{Chapter 1}
+\subsection{Exercises}
+\subsubsection{Question 1.2}
+\textbf{(a)} Absolute error $\approx 0.141592653$, the relative error $\approx 4.507$ \%.
+
+
+\textbf{(b)} Absolute error $\approx 0.001592653$, the relative error $\approx 0.0506957$ \%.
+
+
+\textbf{(c)} Absolute error $\approx 0.001264489$, relative error $\approx 0.0402499$ \%.
+
+\subsubsection{Question 1.5}
+
+The condition number is defined as follows:
+$$Cond = \frac{|(f(\hat{x}) - f(x))/f(x)|}{|(\hat{x}-x)/x|}$$
+
+but more carefully:
+$$Cond = \frac{|((x + \Delta x)-(y + \Delta y)) - \textcolor{blue}{(x-y)}|/|\textcolor{red}{x-y}|}{|(|x + \Delta x| + |y + \Delta y|)-(\textcolor{blue}{|x| + |y|})|/(\textcolor{red}{|x| + |y|)}}$$
+$$\geq \frac{|(\hcancel{(x - y)}\textcolor{blue}{\epsilon} + \Delta x - \Delta y) - \textcolor{blue}{\epsilon}|/|\textcolor{red}{\epsilon}|}{|(\hcancel{|x| - |x|} + |\Delta x| + \hcancel{|y | - | y|} + \Delta y|)|/(\textcolor{red}{1})}$$
+
+$$ = \frac{|\Delta x - \Delta y| /\epsilon}{(|\Delta x| + |\Delta y|)/1} $$
+$$ \geq \frac{1}{\epsilon} $$
+
+The condition number is therefore necessarily larger than $\frac{1}{\epsilon}$, which means as $\epsilon$ gets closer to 0, we have more sensitivity in $f$. Since $x-y \approx \epsilon$, this means that the function gets more sensitive the closer $x$ and $y$ are to each other in value.
+
+\subsubsection{Question 1.6}
+
+\textbf{(a)}The method which uses multiplication, ie
+
+$$x_k = a + kh, \qquad k=0,...,n$$
+
+is better than the recursive summation method. Since we are using floating point arithmetic, every step of the recursive method will involve some rounding. This loss of precision (error) will accumulate in the sum. While the multiplicative method also involves rounding, there are only two opperations, so the loss of precision is restricted to whatever occurs because of those two operations. Basically there are two rounding errors for the multiplicative method while the recursive method adds $n$ rounding errors.
+
+\textbf{(b)}
+In order to do this we set $a=0$, $b=1$ and use $n=10000$. We computed the $x_k$ for both methods and compared the results by taking the squared error between each term of each method and a true set of values achieved using $np.linspace$. The code can be found in $assignment1.ipynb.$\\
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{fig_ch1_cp1_6.png}
+	\label{fig:ch1_cp1_6}
+	\caption{Comparison of the error of the two proposed linspace generation methods.}
+\end{figure}
+
+\end{document}
