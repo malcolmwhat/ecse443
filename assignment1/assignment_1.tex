@@ -447,7 +447,74 @@ $$B = \left[ \begin{smallmatrix} \alpha & a^{T} \\ a & A \end{smallmatrix} \righ
 
 \subsection{Computer Exercises}
 \subsubsection{Question 2.5}
+The code can be found in assignment1.ipynb.
+
+\textbf{Part A}\\
+The value of $x$ after single precision gaussian elimination is
+$$\left( \begin{smallmatrix}-0.99992704\\
+ 2.000323\\
+ -2.9988637\\
+ 3.9983127\\
+ \end{smallmatrix}
+ \right)
+$$
+\textbf{Part B}\\
+The value of the residual $r$ is
+$$\left( \begin{smallmatrix}4.7683716^{-7}\\
+ -1.0561943^{-4}\\
+ 2.0742416^{-5}\\
+ -9.5858813^{-6}\\
+ \end{smallmatrix}
+ \right)
+$$
+
+\textbf{Part C}\\
+The value of the correction $z$ is
+$$\left( \begin{smallmatrix}
+-7.2929193^{-5}\\
+-3.2293634^{-04}\\
+-1.1358784^{-03}\\
+ 1.6866578^{-03}\\
+ \end{smallmatrix}
+ \right)
+$$
+
+The corrected value of $x$ is
+$$\left( \begin{smallmatrix}
+	-1.\\
+ 2.0000002\\
+-2.9999995\\
+ 3.9999993\\
+  \end{smallmatrix}
+ \right)
+$$
+
+\textbf{Part D}\\
+The corrected value of $x$ is (after 2 iterations)
+$$\left( \begin{smallmatrix}
+	-1.\\
+ 2.\\
+-3.\\
+ 4.\\
+  \end{smallmatrix}
+ \right)
+$$
+
+
 \subsubsection{Question 2.6}
+Again, the code can be found in $assignment1.ipynb$.
+
+The error hits 100\% at $n=13$. The number of significant digits has an
+inverse relationship with the log of the condition number. This makes
+sense since the significant digits is aquired by taking the log of the error and
+rounding to the nearest digit.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{cond_and_sigdigits.png} 
+	\label{fig:q2_6CP}
+	\caption{The number of significant digits plotted against the log of the condition number as we increase the size n of the Hilbert matrix.}
+\end{figure}
+
 \subsubsection{Question 2.9}
 \subsubsection{Question 2.11}
 \subsubsection{Question 2.17}
