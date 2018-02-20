@@ -319,17 +319,6 @@ in order for U to be singular (i.e. the determinant be 0).
 
 $$\epsilon < \sqrt{\epsilon_{machine}}$$
 
-\subsubsection{Question 2.13}
-The steps are as follows:
-\begin{enumerate}
-\item Solve the lower triangular system $L_1 * x = b$ for $x$ using forward substitution.
-\item Solve the lower triangular system $L_2 * y = x - B* x$ for $y$ using forward substitution.
-\end{enumerate}
-
-{
-\color{red} I didn't get around to actually writing out the solution yet.
-}
-
 \subsubsection{Question 2.21}
 $$x = B^{-1} (2A + I)(C^{-1} + A)b$$
 
@@ -430,22 +419,10 @@ both A and B are opposite sign) then we cannot possibly have equality, and we've
 already shown that we can't go above equality, so we must have a smaller value in
 the combined norm than in the sum of the two seperate norms.
 
-{\color{red} This is a shitty explanation for the last part. Do a better job.}
 
 \textit{(b)}
 $$ \lvert \lvert A\rvert \rvert_{F} = \left( \sum_{i,j}\lvert a_{i,j} \rvert^{2} \right)^{\frac{1}{2}} $$
 
-{\color{red} I CAN'T DO THIS RIGHT NOW.}
-
-
-\subsubsection{Question 2.37}
-
-$$B = \left[ \begin{smallmatrix} \alpha & a^{T} \\ a & A \end{smallmatrix} \right]$$
-{\color{red}
-\textit{(a)}
-
-\textit{(b)}
-}
 
 
 \subsection{Computer Exercises}
@@ -519,7 +496,34 @@ rounding to the nearest digit.
 \end{figure}
 
 \subsubsection{Question 2.9}
-{\color{red} I haven't completed this question yet, but some of the code is present in the assignment1 notebook.}
-\subsubsection{Question 2.11}
-\subsubsection{Question 2.17}
+In both cases we do pretty poorly. The code can be found in
+$assignment1.ipynb$. The results are as follows:
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|}
+\hline
+$\epsilon$ & Sig Figs G.E. & Sig Figs r correction \\
+\hline
+0.01 & inf & inf\\
+0.0001 & inf & inf\\
+1e-06 & 7 & 7\\
+1e-08 & 0 & 0\\
+1e-10 & 0 & 0\\
+1e-12 & 0 & 0\\
+1e-14 & 0 & 0\\
+1e-16 & 0 & 0\\
+1e-18 & 0 & 0\\
+1e-20 & 0 & 0\\
+\hline
+
+
+\end{tabular}
+
+\end{center}
+
+As we can see, the correction has no impact on the result, this is
+because the computation of the residual is subject to the same
+troubling truncation issues as the Gaussian Elimination solver is.
+
 \end{document}
